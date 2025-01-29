@@ -146,14 +146,19 @@ function moveBoats(event) {
 
         // fetch boat position at new timestamp
         const newCoordinates = getBoatPosition(boat, currentTimestamp)
+        if(newCoordinates) {
+            // update boat position
+            boat.marker.getGeometry().setCoordinates(newCoordinates);
+
+            // add point to boat line
+            boat.line.getGeometry().appendCoordinate(newCoordinates);
+        }
 
         // draw boat marker
-        boat.marker.getGeometry().setCoordinates(newCoordinates);
         vectorContext.setStyle(boat.markerStyle);
         vectorContext.drawGeometry(boat.marker.getGeometry());
 
-        // add point to boat line
-        boat.line.getGeometry().appendCoordinate(newCoordinates);
+        // draw boat line
         vectorContext.setStyle(boat.lineStyle);
         vectorContext.drawGeometry(boat.line.getGeometry());
     }
