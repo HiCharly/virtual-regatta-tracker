@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using OpenLayers with Vite</title>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <div style="z-index: 9999; position: fixed; bottom: 0; left: 0;">
+
+      <label for="speed">
+        speed:&nbsp;
+        <input id="speed" type="range" min="0" max="10000" step="10" value="200">
+      </label>
+      <button id="start-animation">Start Animation</button>
+
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

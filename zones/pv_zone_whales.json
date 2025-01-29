@@ -1,0 +1,101 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -28.566667,
+              40.9
+            ],
+            [
+              -23.833333,
+              37.81
+            ],
+            [
+              -24.216667,
+              36.626667
+            ],
+            [
+              -25.593333,
+              36.34
+            ],
+            [
+              -31.856667,
+              37.583333
+            ],
+            [
+              -31.833333,
+              40.0
+            ],
+            [
+              -28.566667,
+              40.9
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "Acores A",
+          "Acores B",
+          "Acores C",
+          "Acores D",
+          "Acores E",
+          "Acores F"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -25.35,
+              17.75
+            ],
+            [
+              -22.666667,
+              17.7
+            ],
+            [
+              -22.133333,
+              15.966667
+            ],
+            [
+              -22.833333,
+              14.533333
+            ],
+            [
+              -25.416667,
+              14.666667
+            ],
+            [
+              -26.133333,
+              16.166667
+            ],
+            [
+              -25.35,
+              17.75
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "ZPB Cap Vert A",
+          "ZPB Cap Vert B",
+          "ZPB Cap Vert C",
+          "ZPB Cap Vert D",
+          "ZPB Cap Vert E",
+          "ZPB Cap Vert F"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -10.086667,
+              43.523333
+            ],
+            [
+              -9.606667,
+              43.35
+            ],
+            [
+              -9.733333,
+              43.175
+            ],
+            [
+              -9.733333,
+              42.88
+            ],
+            [
+              -10.230833,
+              42.88
+            ],
+            [
+              -10.230833,
+              43.315833
+            ],
+            [
+              -10.086667,
+              43.523333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "1- TSS Cap Finisterre A",
+          "1- TSS Cap Finisterre B",
+          "1- TSS Cap Finisterre C",
+          "1- TSS Cap Finisterre D",
+          "1- TSS Cap Finisterre E",
+          "1- TSS Cap Finisterre F"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9.685,
+              38.866667
+            ],
+            [
+              -9.666667,
+              38.661667
+            ],
+            [
+              -10.195,
+              38.565
+            ],
+            [
+              -10.23,
+              38.681667
+            ],
+            [
+              -10.23,
+              38.866667
+            ],
+            [
+              -9.685,
+              38.866667
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "2- TSS Cape Rocca A",
+          "2- TSS Cape Rocca B",
+          "2- TSS Cape Rocca C",
+          "2- TSS Cape Rocca D",
+          "2- TSS Cape Rocca E"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9.195,
+              37.041667
+            ],
+            [
+              -9.171667,
+              36.945
+            ],
+            [
+              -9.071667,
+              36.858333
+            ],
+            [
+              -8.953333,
+              36.835
+            ],
+            [
+              -9.1,
+              36.42
+            ],
+            [
+              -9.36,
+              36.474333
+            ],
+            [
+              -9.664167,
+              36.736667
+            ],
+            [
+              -9.721667,
+              36.943333
+            ],
+            [
+              -9.195,
+              37.041667
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "3- TSS Cabo Sao Vicente A",
+          "3- TSS Cabo Sao Vicente B",
+          "3- TSS Cabo Sao Vicente C",
+          "3- TSS Cabo Sao Vicente D",
+          "3- TSS Cabo Sao Vicente E",
+          "3- TSS Cabo Sao Vicente F",
+          "3- TSS Cabo Sao Vicente G",
+          "3- TSS Cabo Sao Vicente H"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -14.795,
+              28.33
+            ],
+            [
+              -15.005833,
+              27.813
+            ],
+            [
+              -15.1475,
+              27.858333
+            ],
+            [
+              -14.951667,
+              28.341667
+            ],
+            [
+              -15.655,
+              28.563333
+            ],
+            [
+              -16.215833,
+              27.973333
+            ],
+            [
+              -16.3275,
+              28.0575
+            ],
+            [
+              -15.78,
+              28.635
+            ],
+            [
+              -14.795,
+              28.33
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "4- TSS Canaries Est A",
+          "4- TSS Canaries Est B",
+          "4- TSS Canaries Est C",
+          "4- TSS Canaries Est D",
+          "4- TSS Canaries Ouest A",
+          "4- TSS Canaries Ouest B",
+          "4- TSS Canaries Ouest C",
+          "4- TSS Canaries Ouest D"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -16.416667,
+              21.516667
+            ],
+            [
+              -16.416667,
+              16.0
+            ],
+            [
+              -17.583333,
+              16.0
+            ],
+            [
+              -17.583333,
+              21.516667
+            ],
+            [
+              -16.416667,
+              21.516667
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "5- TSS Mauritanie A",
+          "5- TSS Mauritanie B",
+          "5- TSS Mauritanie C",
+          "5- TSS Mauritanie D"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -39.75,
+              -21.5
+            ],
+            [
+              -39.233333,
+              -21.933333
+            ],
+            [
+              -40.220833,
+              -23.0
+            ],
+            [
+              -41.015,
+              -23.5775
+            ],
+            [
+              -41.633333,
+              -23.483333
+            ],
+            [
+              -40.416667,
+              -22.133333
+            ],
+            [
+              -39.75,
+              -21.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "6- ZI Cabo Frio A",
+          "6- ZI Cabo Frio B",
+          "6- ZI Cabo Frio C",
+          "6- ZI Cabo Frio D",
+          "6- ZI Cabo Frio E",
+          "6- ZI Cabo Frio F"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -42.85,
+              -24.9
+            ],
+            [
+              -42.263333,
+              -25.5
+            ],
+            [
+              -43.333333,
+              -25.916667
+            ],
+            [
+              -43.75,
+              -25.505833
+            ],
+            [
+              -42.85,
+              -24.9
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "6- ZI Rio de Janeiro A",
+          "6- ZI Rio de Janeiro B",
+          "6- ZI Rio de Janeiro C",
+          "6- ZI Rio de Janeiro D"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.275833,
+              49.7675
+            ],
+            [
+              -6.273333,
+              49.592333
+            ],
+            [
+              -6.568333,
+              49.5925
+            ],
+            [
+              -6.4925,
+              49.767167
+            ],
+            [
+              -6.275833,
+              49.7675
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "9- TSS South Scilly A",
+          "9- TSS South Scilly B",
+          "9- TSS South Scilly C",
+          "9- TSS South Scilly D"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.611667,
+              49.034167
+            ],
+            [
+              -5.416667,
+              48.81
+            ],
+            [
+              -5.1975,
+              48.62
+            ],
+            [
+              -5.3675,
+              48.489167
+            ],
+            [
+              -5.708333,
+              48.583333
+            ],
+            [
+              -6.051667,
+              48.708333
+            ],
+            [
+              -5.86,
+              48.94
+            ],
+            [
+              -5.611667,
+              49.034167
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "10- TSS Ouessant A",
+          "10- TSS Ouessant B",
+          "10- TSS Ouessant C",
+          "10- TSS Ouessant D",
+          "10- TSS Ouessant E",
+          "10- TSS Ouessant F",
+          "10- TSS Ouessant G"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.526667,
+              46.952167
+            ],
+            [
+              -2.404333,
+              46.848583
+            ],
+            [
+              -2.491083,
+              46.800417
+            ],
+            [
+              -2.590583,
+              46.884583
+            ],
+            [
+              -2.59175,
+              46.916083
+            ],
+            [
+              -2.526667,
+              46.952167
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "names": [
+          "11- ZI Eoliennes Yeu A",
+          "11- ZI Eoliennes Yeu B",
+          "11- ZI Eoliennes Yeu C",
+          "11- ZI Eoliennes Yeu D",
+          "11- ZI Eoliennes Yeu E"
+        ]
+      }
+    }
+  ]
+}
