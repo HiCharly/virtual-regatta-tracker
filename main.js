@@ -1,15 +1,14 @@
 import './style.css';
-import {Feature, Map, View} from 'ol';
+import {Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
-import {LineString, Point} from "ol/geom";
-import {Fill, Stroke, Style, Text} from "ol/style";
-import CircleStyle from "ol/style/Circle";
+import {Fill, Stroke, Style} from "ol/style";
 import {getVectorContext} from "ol/render";
 import {useGeographic} from "ol/proj";
 import {XYZ} from "ol/source";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import {GeoJSON} from "ol/format";
+import Boat from "./src/Models/Boat";
 
 useGeographic();
 
@@ -32,9 +31,9 @@ const zonesLayer = new VectorLayer({
     })
 });
 const zonesFiles = [
-    'zones/pv_zea_v7.json',
-    'zones/pv_zi_vg_2024.json',
-    'zones/pv_zone_whales.json',
+    'data/zones/pv_zea_v7.json',
+    'data/zones/pv_zi_vg_2024.json',
+    'data/zones/pv_zone_whales.json',
 ]
 zonesFiles.forEach(zoneFile => {
     fetch(zoneFile)
@@ -71,45 +70,10 @@ const boatOptions = [
         color: 'red',
     }
 ]
-
 const boats = []
-for(const boatId in boatOptions) {
-    const boat = boatOptions[boatId];
-    fetch('boats/' + boat.name + '.json')
-        .then(res => res.json())
-        .then(json => {
-            boats.push({
-                'name': boat.name,
-                'routePoints': json,
-                'marker': new Feature({
-                    geometry: new Point([]),
-                }),
-                'markerStyle': new Style({
-                    image: new CircleStyle({
-                        radius: 4,
-                        fill: new Fill({color: boat.color}),
-                    }),
-                    text: new Text({
-                        font: 'bold 11px "Open Sans", "Arial Unicode MS", "sans-serif"',
-                        textAlign: 'left',
-                        offsetX: 10,
-                        placement: 'point',
-                        fill: new Fill({color: '#fff'}),
-                        // stroke: new Stroke({color: '#000', width: 2}),
-                        text: boat.name,
-                    }),
-                }),
-                'line': new Feature({
-                    geometry: new LineString([]),
-                }),
-                'lineStyle': new Style({
-                    stroke: new Stroke({
-                        color: boat.color,
-                        width: 1
-                    })
-                }),
-            })
-        })
+for (const boatOption of boatOptions) {
+    const boat = new Boat(boatOption.name, boatOption.color);
+    boat.fetchTrace().then(() => { boats.push(boat) })
 }
 
 // Animations
@@ -146,7 +110,7 @@ function moveBoats(event) {
         const vectorContext = getVectorContext(event);
 
         // fetch boat position at new timestamp
-        const newCoordinates = getBoatPosition(boat, currentTimestamp)
+        const newCoordinates = boat.getPosition(currentTimestamp)
         if(newCoordinates) {
             // update boat position
             boat.marker.getGeometry().setCoordinates(newCoordinates);
@@ -166,27 +130,6 @@ function moveBoats(event) {
 
     // tell OpenLayers to continue the postrender animation
     map.render();
-}
-
-function getBoatPosition(boat, timestamp) {
-    // fetch previous coordinates
-    const previousStep = boat.routePoints.findLast(point => point.ts < timestamp);
-    const previousTimestamp = previousStep.ts;
-    const previousCoordinates = [previousStep.lon, previousStep.lat];
-
-    // fetch next coordinates
-    const nextStep = boat.routePoints.find(point => point.ts > timestamp);
-    if(!nextStep) {
-        return false;
-    }
-    const nextTimestamp = nextStep.ts;
-    const nextCoordinates = [nextStep.lon, nextStep.lat];
-
-    // My boat is between previous and next coordinates, create a virtual line and project the boat position
-    const projectionLine = new LineString([previousCoordinates, nextCoordinates]);
-    const projectionLineDuration = nextTimestamp - previousTimestamp;
-    const elapsedTimeOnProjection = timestamp - previousTimestamp;
-    return projectionLine.getCoordinateAt(elapsedTimeOnProjection / projectionLineDuration);
 }
 
 startButton.addEventListener('click', function () {
