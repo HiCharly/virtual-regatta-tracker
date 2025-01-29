@@ -1,7 +1,7 @@
 import './style.css';
 import {Feature, Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
-import {LineString, Point, Polygon} from "ol/geom";
+import {LineString, Point} from "ol/geom";
 import {Fill, Stroke, Style, Text} from "ol/style";
 import CircleStyle from "ol/style/Circle";
 import {getVectorContext} from "ol/render";
@@ -9,6 +9,7 @@ import {useGeographic} from "ol/proj";
 import {XYZ} from "ol/source";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
+import {GeoJSON} from "ol/format";
 
 useGeographic();
 
@@ -21,11 +22,6 @@ const tileLayer = new TileLayer({
 });
 
 // Exclusion zones layer
-const zonesFiles = [
-    await fetch('zones/pv_zea_v7.json').then(res => res.json()),
-    await fetch('zones/pv_zi_vg_2024.json').then(res => res.json()),
-    await fetch('zones/pv_zone_whales.json').then(res => res.json()),
-];
 const zonesLayer = new VectorLayer({
     source: new VectorSource({
         features: [],
@@ -35,12 +31,15 @@ const zonesLayer = new VectorLayer({
         stroke: new Stroke({color: 'rgba(255,0,0,1)'}),
     })
 });
-zonesFiles.forEach(zone => {
-    zone.features.forEach(zoneFeature => {
-        zonesLayer.getSource().addFeature(new Feature({
-            geometry: new Polygon(zoneFeature.geometry.coordinates),
-        }));
-    });
+const zonesFiles = [
+    'zones/pv_zea_v7.json',
+    'zones/pv_zi_vg_2024.json',
+    'zones/pv_zone_whales.json',
+]
+zonesFiles.forEach(zoneFile => {
+    fetch(zoneFile)
+        .then(res => res.json())
+        .then(json => { zonesLayer.getSource().addFeatures(new GeoJSON().readFeatures(json)) })
 });
 
 const map = new Map({
@@ -76,39 +75,41 @@ const boatOptions = [
 const boats = []
 for(const boatId in boatOptions) {
     const boat = boatOptions[boatId];
-    const routePoints = await fetch('boats/' + boat.name + '.json').then(res => res.json());
-
-    boats.push({
-        'name': boat.name,
-        'routePoints': routePoints,
-        'marker': new Feature({
-            geometry: new Point([]),
-        }),
-        'markerStyle': new Style({
-            image: new CircleStyle({
-                radius: 4,
-                fill: new Fill({color: boat.color}),
-            }),
-            text: new Text({
-                font: 'bold 11px "Open Sans", "Arial Unicode MS", "sans-serif"',
-                textAlign: 'left',
-                offsetX: 10,
-                placement: 'point',
-                fill: new Fill({color: '#fff'}),
-                // stroke: new Stroke({color: '#000', width: 2}),
-                text: boat.name,
-            }),
-        }),
-        'line': new Feature({
-            geometry: new LineString([]),
-        }),
-        'lineStyle': new Style({
-            stroke: new Stroke({
-                color: boat.color,
-                width: 1
+    fetch('boats/' + boat.name + '.json')
+        .then(res => res.json())
+        .then(json => {
+            boats.push({
+                'name': boat.name,
+                'routePoints': json,
+                'marker': new Feature({
+                    geometry: new Point([]),
+                }),
+                'markerStyle': new Style({
+                    image: new CircleStyle({
+                        radius: 4,
+                        fill: new Fill({color: boat.color}),
+                    }),
+                    text: new Text({
+                        font: 'bold 11px "Open Sans", "Arial Unicode MS", "sans-serif"',
+                        textAlign: 'left',
+                        offsetX: 10,
+                        placement: 'point',
+                        fill: new Fill({color: '#fff'}),
+                        // stroke: new Stroke({color: '#000', width: 2}),
+                        text: boat.name,
+                    }),
+                }),
+                'line': new Feature({
+                    geometry: new LineString([]),
+                }),
+                'lineStyle': new Style({
+                    stroke: new Stroke({
+                        color: boat.color,
+                        width: 1
+                    })
+                }),
             })
-        }),
-    })
+        })
 }
 
 // Animations
