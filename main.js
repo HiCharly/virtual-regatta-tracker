@@ -8,7 +8,7 @@ import {XYZ} from "ol/source";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import {GeoJSON} from "ol/format";
-import Boat from "./src/Models/Boat";
+import Boat from "./src/Geometry/Boat";
 
 useGeographic();
 
@@ -49,7 +49,8 @@ const map = new Map({
     ],
     view: new View({
         center: [-1.831527, 46.4713], // race start
-        zoom: 8
+        zoom: 7,
+        rotation: 0,
     })
 });
 
@@ -61,7 +62,8 @@ const boatOptions = [
     {
         name: 'Hugo(85)',
         color: 'black',
-    }, {
+    },
+    {
         name: 'CharlySkipper3000',
         color: 'white'
     },
@@ -105,28 +107,26 @@ function moveBoats(event) {
     currentTimestamp += speed * 1000; // 1000 multiplication to convert ms to s
 
     // loop over boats
-    for (const boatId in boats) {
-        const boat = boats[boatId];
-        const vectorContext = getVectorContext(event);
-
+    const vectorContext = getVectorContext(event);
+    boats.forEach(boat => {
         // fetch boat position at new timestamp
         const newCoordinates = boat.getPosition(currentTimestamp)
         if(newCoordinates) {
             // update boat position
-            boat.marker.getGeometry().setCoordinates(newCoordinates);
+            boat.geometry.setCoordinates(newCoordinates);
 
             // add point to boat line
-            boat.line.getGeometry().appendCoordinate(newCoordinates);
+            boat.drag.addPoint(newCoordinates);
         }
 
         // draw boat marker
-        vectorContext.setStyle(boat.markerStyle);
-        vectorContext.drawGeometry(boat.marker.getGeometry());
+        vectorContext.setStyle(boat.style);
+        vectorContext.drawGeometry(boat.geometry);
 
         // draw boat line
-        vectorContext.setStyle(boat.lineStyle);
-        vectorContext.drawGeometry(boat.line.getGeometry());
-    }
+        vectorContext.setStyle(boat.drag.style);
+        vectorContext.drawGeometry(boat.drag.getGeometry());
+    })
 
     // tell OpenLayers to continue the postrender animation
     map.render();

@@ -1,18 +1,15 @@
-import {Fill, Stroke, Style, Text} from "ol/style";
+import {Fill, Style, Text} from "ol/style";
 import CircleStyle from "ol/style/Circle";
-import {Feature} from "ol";
-import {LineString, Point} from "ol/geom";
+import {LineString, MultiLineString, Point} from "ol/geom";
+import BoatDrag from "./BoatDrag";
 
 export default class Boat {
     constructor(name, color) {
         this.name = name;
         this.color = color;
 
-        this.marker = new Feature({
-            geometry: new Point([]),
-        })
-
-        this.markerStyle = new Style({
+        this.geometry = new Point([])
+        this.style = new Style({
             image: new CircleStyle({
                 radius: 4,
                 fill: new Fill({color: this.color}),
@@ -28,16 +25,7 @@ export default class Boat {
             }),
         });
 
-        this.line = new Feature({
-            geometry: new LineString([]),
-        })
-
-        this.lineStyle = new Style({
-            stroke: new Stroke({
-                color: this.color,
-                width: 1
-            })
-        });
+        this.drag = new BoatDrag(this.color)
     }
 
     fetchTrace() {
@@ -61,9 +49,31 @@ export default class Boat {
         const nextCoordinates = [nextStep.lon, nextStep.lat];
 
         // My boat is between previous and next coordinates, create a virtual line and project the boat position
-        const projectionLine = new LineString([previousCoordinates, nextCoordinates]);
+        // Create a projection line between previous and next points
+        let projectionLine;
         const projectionLineDuration = nextTimestamp - previousTimestamp;
         const elapsedTimeOnProjection = timestamp - previousTimestamp;
-        return projectionLine.getCoordinateAt(elapsedTimeOnProjection / projectionLineDuration);
+        if (Math.abs(previousStep.lon - nextStep.lon) > 180) {
+            const w1 = 180 - Math.abs(previousStep.lon);
+            const w2 = 180 - Math.abs(nextStep.lon);
+            const y = (w1 / (w1 + w2)) * (nextStep.lat - previousStep.lat) + previousStep.lat;
+
+            projectionLine = new MultiLineString([
+                [
+                    previousCoordinates,
+                    [previousCoordinates > 0 ? 180 : -180, y]
+                ],
+                [
+                    [nextCoordinates[0] > 0 ? 180 : -180, y],
+                    nextCoordinates,
+                ],
+            ]);
+            return projectionLine.getCoordinateAtM(elapsedTimeOnProjection / projectionLineDuration);
+        }
+        else {
+            projectionLine = new LineString([previousCoordinates, nextCoordinates]);
+            return projectionLine.getCoordinateAt(elapsedTimeOnProjection / projectionLineDuration);
+        }
+
     }
 }
