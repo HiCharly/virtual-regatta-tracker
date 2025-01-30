@@ -97,7 +97,7 @@ function stopAnimation() {
     tileLayer.un('postrender', moveBoats);
 
     boats.forEach(boat => {
-        boat.line.getGeometry().setCoordinates([]);
+        boat.drag.reset();
     });
 }
 

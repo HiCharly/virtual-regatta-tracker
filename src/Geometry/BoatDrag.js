@@ -10,11 +10,7 @@ export default class BoatDrag {
             })
         });
 
-        this.lastLon = Infinity;
-        this.lastLat = undefined;
-
-        this.lineStrings = [];
-        this.lineString = undefined;
+        this.reset()
     }
 
     getGeometry() {
@@ -50,5 +46,13 @@ export default class BoatDrag {
 
     newLineString() {
         this.lineStrings.push(this.lineString = [])
+    }
+
+    reset() {
+        this.lastLon = Infinity;
+        this.lastLat = undefined;
+
+        this.lineStrings = [];
+        this.lineString = undefined;
     }
 }
