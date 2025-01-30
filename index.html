@@ -9,14 +9,31 @@
   <body>
     <div id="map"></div>
 
-    <div style="z-index: 9999; position: fixed; bottom: 0; left: 0;">
-
+    <div class="controls">
       <label for="speed">
-        speed:&nbsp;
-        <input id="speed" type="range" min="0" max="10000" step="10" value="200">
+        Vitesse
+        <select id="speed">
+          <option value="200">x1</option>
+          <option value="400">x2</option>
+          <option value="1000">x5</option>
+          <option value="10000">x10</option>
+        </select>
       </label>
-      <button id="start-animation">Start Animation</button>
 
+
+      <label for="follow">
+        Suivre
+        <select id="follow">
+          <option value="null" selected></option>
+        </select>
+      </label>
+
+      <label for="zoom">
+        Zoom
+        <input id="zoom" type="range" min="1" max="10" step=".1" value="7">
+      </label>
+
+      <button id="start-animation">Start Animation</button>
     </div>
 
     <script type="module" src="./main.js"></script>

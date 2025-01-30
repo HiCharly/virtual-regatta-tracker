@@ -12,6 +12,13 @@ import Boat from "./src/Geometry/Boat";
 
 useGeographic();
 
+// Animations
+const followInput = document.getElementById('follow')
+const speedInput = document.getElementById('speed');
+const zoomInput = document.getElementById('zoom');
+const startButton = document.getElementById('start-animation');
+let animating = false;
+
 // Satellite layer
 const tileLayer = new TileLayer({
     source: new XYZ({
@@ -50,7 +57,7 @@ const map = new Map({
     view: new View({
         center: [-1.831527, 46.4713], // race start
         zoom: 7,
-        rotation: 0,
+        enableRotation: false,
     })
 });
 
@@ -75,13 +82,15 @@ const boatOptions = [
 const boats = []
 for (const boatOption of boatOptions) {
     const boat = new Boat(boatOption.name, boatOption.color);
-    boat.fetchTrace().then(() => { boats.push(boat) })
-}
+    boat.fetchTrace().then(() => {
+        boats.push(boat);
 
-// Animations
-const speedInput = document.getElementById('speed');
-const startButton = document.getElementById('start-animation');
-let animating = false;
+        const opt = document.createElement('option');
+        opt.value = boat.name;
+        opt.innerHTML = boat.name;
+        followInput.appendChild(opt);
+    })
+}
 
 function startAnimation() {
     animating = true;
@@ -126,6 +135,12 @@ function moveBoats(event) {
         // draw boat line
         vectorContext.setStyle(boat.drag.style);
         vectorContext.drawGeometry(boat.drag.getGeometry());
+
+        // follow boat
+        if(followInput.value === boat.name) {
+            map.getView().setCenter(newCoordinates);
+        }
+        map.getView().setZoom(zoomInput.value);
     })
 
     // tell OpenLayers to continue the postrender animation
