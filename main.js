@@ -18,6 +18,7 @@ const speedInput = document.getElementById('speed');
 const zoomInput = document.getElementById('zoom');
 const startButton = document.getElementById('start-pause');
 const resetButton = document.getElementById('reset');
+const dateText = document.getElementById('date');
 let rendering = false;
 let isPaused = false;
 
@@ -137,6 +138,9 @@ function moveBoats(event) {
     if(!isPaused) {
         const speed = Number(speedInput.value);
         currentTimestamp += speed * 1000; // 1000 multiplication to convert ms to s
+
+        const date = new Date(currentTimestamp);
+        dateText.innerText = date.toLocaleString(globalThis.navigator.language)
     }
 
     // loop over boats
