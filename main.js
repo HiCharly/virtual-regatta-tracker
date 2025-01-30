@@ -76,7 +76,7 @@ const boatOptions = [
     },
     {
         name: 'CharlySkipper3000',
-        color: 'white'
+        color: 'orange'
     },
     {
         name: 'Les sardines des sables',
