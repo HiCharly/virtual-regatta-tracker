@@ -126,21 +126,21 @@ function moveBoats(event) {
 
             // add point to boat line
             boat.drag.addPoint(newCoordinates);
+
+            // draw boat marker
+            vectorContext.setStyle(boat.style);
+            vectorContext.drawGeometry(boat.geometry);
+
+            // draw boat line
+            vectorContext.setStyle(boat.drag.style);
+            vectorContext.drawGeometry(boat.drag.getGeometry());
+
+            // follow boat
+            if(followInput.value === boat.name) {
+                map.getView().setCenter(newCoordinates);
+            }
+            map.getView().setZoom(zoomInput.value);
         }
-
-        // draw boat marker
-        vectorContext.setStyle(boat.style);
-        vectorContext.drawGeometry(boat.geometry);
-
-        // draw boat line
-        vectorContext.setStyle(boat.drag.style);
-        vectorContext.drawGeometry(boat.drag.getGeometry());
-
-        // follow boat
-        if(followInput.value === boat.name) {
-            map.getView().setCenter(newCoordinates);
-        }
-        map.getView().setZoom(zoomInput.value);
     })
 
     // tell OpenLayers to continue the postrender animation
