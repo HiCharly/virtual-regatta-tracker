@@ -37,6 +37,9 @@ export default class Boat {
     getPosition(timestamp) {
         // fetch previous coordinates
         const previousStep = this.trace.findLast(point => point.ts < timestamp);
+        if(!previousStep)
+            return false;
+
         const previousTimestamp = previousStep.ts;
         const previousCoordinates = [previousStep.lon, previousStep.lat];
 
