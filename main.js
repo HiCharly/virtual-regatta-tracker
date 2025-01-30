@@ -80,7 +80,19 @@ const boatOptions = [
     {
         name: 'Les sardines des sables',
         color: 'red',
-    }
+    },
+    {
+        name: 'cece-85-',
+        color: 'green',
+    },
+    {
+        name: 'Quent185',
+        color: 'purple',
+    },
+    {
+        name: 'Cycle 3 école Saint-Pierre',
+        color: 'pink',
+    },
 ]
 const boats = []
 for (const boatOption of boatOptions) {
