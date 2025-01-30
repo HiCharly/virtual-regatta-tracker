@@ -58,6 +58,7 @@ const map = new Map({
         center: [-1.831527, 46.4713], // race start
         zoom: 7,
         enableRotation: false,
+        extent: [-180,-90,180,90],
     })
 });
 
