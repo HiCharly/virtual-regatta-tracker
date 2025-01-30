@@ -7,6 +7,7 @@ export default class Boat {
     constructor(name, color) {
         this.name = name;
         this.color = color;
+        this.start = false;
 
         this.geometry = new Point([])
         this.style = new Style({

@@ -128,6 +128,7 @@ function resetAnimation() {
 
     boats.forEach(boat => {
         boat.drag.reset();
+        boat.start = false;
     });
 }
 
@@ -144,12 +145,21 @@ function moveBoats(event) {
         // fetch boat position at new timestamp
         const newCoordinates = boat.getPosition(currentTimestamp)
         if(newCoordinates) {
+            boat.start = true;
+
             // update boat position
             boat.geometry.setCoordinates(newCoordinates);
 
             // add point to boat line
             boat.drag.addPoint(newCoordinates);
 
+            // follow boat
+            if(followInput.value === boat.name) {
+                map.getView().setCenter(newCoordinates);
+            }
+        }
+
+        if(boat.start) {
             // draw boat marker
             vectorContext.setStyle(boat.style);
             vectorContext.drawGeometry(boat.geometry);
@@ -157,13 +167,10 @@ function moveBoats(event) {
             // draw boat line
             vectorContext.setStyle(boat.drag.style);
             vectorContext.drawGeometry(boat.drag.getGeometry());
-
-            // follow boat
-            if(followInput.value === boat.name) {
-                map.getView().setCenter(newCoordinates);
-            }
-            map.getView().setZoom(zoomInput.value);
         }
+
+        // update zoom
+        map.getView().setZoom(zoomInput.value);
     })
 
     // tell OpenLayers to continue the postrender animation
