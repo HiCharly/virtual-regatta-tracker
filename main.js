@@ -16,8 +16,10 @@ useGeographic();
 const followInput = document.getElementById('follow')
 const speedInput = document.getElementById('speed');
 const zoomInput = document.getElementById('zoom');
-const startButton = document.getElementById('start-animation');
-let animating = false;
+const startButton = document.getElementById('start-pause');
+const resetButton = document.getElementById('reset');
+let rendering = false;
+let isPaused = false;
 
 // Satellite layer
 const tileLayer = new TileLayer({
@@ -94,16 +96,22 @@ for (const boatOption of boatOptions) {
 }
 
 function startAnimation() {
-    animating = true;
-    startButton.textContent = 'Stop Animation';
-    currentTimestamp = raceStartTimestamp;
+    rendering = true;
+    isPaused = false;
+    startButton.textContent = 'Pause';
     tileLayer.on('postrender', moveBoats);
     map.render();
 }
 
-function stopAnimation() {
-    animating = false;
-    startButton.textContent = 'Start Animation';
+function pauseAnimation() {
+    rendering = false;
+    isPaused = true;
+    startButton.textContent = 'Start';
+}
+
+function resetAnimation() {
+    pauseAnimation();
+    currentTimestamp = raceStartTimestamp;
     tileLayer.un('postrender', moveBoats);
 
     boats.forEach(boat => {
@@ -113,8 +121,10 @@ function stopAnimation() {
 
 function moveBoats(event) {
     // increase current timestamp
-    const speed = Number(speedInput.value);
-    currentTimestamp += speed * 1000; // 1000 multiplication to convert ms to s
+    if(!isPaused) {
+        const speed = Number(speedInput.value);
+        currentTimestamp += speed * 1000; // 1000 multiplication to convert ms to s
+    }
 
     // loop over boats
     const vectorContext = getVectorContext(event);
@@ -149,11 +159,15 @@ function moveBoats(event) {
 }
 
 startButton.addEventListener('click', function () {
-    if (animating) {
-        stopAnimation();
+    if (rendering) {
+        pauseAnimation();
     } else {
         startAnimation();
     }
+});
+
+resetButton.addEventListener('click', function () {
+    resetAnimation();
 });
 
 startAnimation()
