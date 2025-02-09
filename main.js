@@ -62,7 +62,8 @@ const map = new Map({
         zoom: 7,
         enableRotation: false,
         extent: [-180,-90,180,90],
-    })
+    }),
+    controls: [],
 });
 
 const raceStartTimestamp = 1731240120000
