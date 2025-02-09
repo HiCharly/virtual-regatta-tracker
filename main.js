@@ -94,6 +94,10 @@ const boatOptions = [
         name: 'Cycle 3 école Saint-Pierre',
         color: 'pink',
     },
+    {
+        name: 'La Buse 85',
+        color: 'white',
+    },
 ]
 const boats = []
 for (const boatOption of boatOptions) {
