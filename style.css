@@ -26,7 +26,7 @@ html, body {
   justify-content: space-around;
 }
 
-.date {
+.header {
   z-index: 9999;
   position: fixed;
   top: 0;
@@ -40,4 +40,9 @@ html, body {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+}
+
+.header a {
+  color: inherit;
+  text-decoration: none;
 }
