@@ -13,6 +13,7 @@ import Boat from "./src/Geometry/Boat";
 useGeographic();
 
 // Animations
+const timelineInput = document.getElementById('timeline')
 const teamInput = document.getElementById('team')
 const followInput = document.getElementById('follow')
 const speedInput = document.getElementById('speed');
@@ -67,8 +68,12 @@ const map = new Map({
     controls: [],
 });
 
+// Init timeline
 const raceStartTimestamp = 1731240120000
-let currentTimestamp = raceStartTimestamp;
+const raceEndTimestamp = 1742050800000
+timelineInput.setAttribute("min", raceStartTimestamp)
+timelineInput.setAttribute("max", raceEndTimestamp)
+timelineInput.value = raceStartTimestamp
 let boats = []
 
 function startAnimation() {
@@ -87,7 +92,7 @@ function pauseAnimation() {
 
 function resetAnimation() {
     pauseAnimation();
-    currentTimestamp = raceStartTimestamp;
+    timelineInput.value = raceStartTimestamp;
     tileLayer.un('postrender', moveBoats);
 
     boats.forEach(boat => {
@@ -100,9 +105,9 @@ function moveBoats(event) {
     // increase current timestamp
     if(!isPaused) {
         const speed = Number(speedInput.value);
-        currentTimestamp += speed * 1000; // 1000 multiplication to convert ms to s
+        timelineInput.value = Number(timelineInput.value) + speed * 1000; // 1000 multiplication to convert ms to s
 
-        const date = new Date(currentTimestamp);
+        const date = new Date(timelineInput.value);
         dateText.innerText = date.toLocaleString(globalThis.navigator.language)
     }
 
@@ -110,7 +115,7 @@ function moveBoats(event) {
     const vectorContext = getVectorContext(event);
     boats.forEach(boat => {
         // fetch boat position at new timestamp
-        const newCoordinates = boat.getPosition(currentTimestamp)
+        const newCoordinates = boat.getPosition(timelineInput.value);
         if(newCoordinates) {
             boat.start = true;
 

@@ -1,48 +1,69 @@
 @import "node_modules/ol/ol.css";
 
 html, body {
-  margin: 0;
-  height: 100%;
+    margin: 0;
+    height: 100%;
 }
+
 #map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.timeline {
+    z-index: 9999;
+    position: fixed;
+    bottom: 35px;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.timeline input {
+    width: 95%;
 }
 
 .controls {
-  z-index: 9999;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 35px;
-  background-color: white;
+    z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 35px;
+    background-color: white;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .header {
-  z-index: 9999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 
-  color: white;
-  font-size: 20px;
+    color: white;
+    font-size: 20px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .header a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
