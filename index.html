@@ -17,6 +17,29 @@
     <div id="map"></div>
 
     <div class="controls">
+      <label for="team">
+        Équipe
+        <select id="team">
+          <option value=""></option>
+          <option value="HiCharly">HiCharly</option>
+          <option value="PV1 Projection Virtuelle">PV1 Projection Virtuelle</option>
+          <option value="PV2 Projection Virtuelle">PV2 Projection Virtuelle</option>
+          <option value="PV3 Projection Virtuelle">PV3 Projection Virtuelle</option>
+          <option value="PV4 Projection Virtuelle">PV4 Projection Virtuelle</option>
+          <option value="PV5 Projection Virtuelle">PV5 Projection Virtuelle</option>
+          <option value="PV6 Projection Virtuelle">PV6 Projection Virtuelle</option>
+          <option value="PV7 Projection Virtuelle">PV7 Projection Virtuelle</option>
+          <option value="PV8 Projection Virtuelle">PV8 Projection Virtuelle</option>
+          <option value="PV9 Projection Virtuelle">PV9 Projection Virtuelle</option>
+          <option value="PV10 Projection Virtuelle">PV10 Projection Virtuelle</option>
+          <option value="PV11 Projection Virtuelle">PV11 Projection Virtuelle</option>
+          <option value="PV12 Projection Virtuelle">PV12 Projection Virtuelle</option>
+        </select>
+      </label>
+
+      <button id="start-pause">Start</button>
+      <button id="reset">Reset</button>
+
       <label for="speed">
         Vitesse
         <select id="speed">
@@ -29,11 +52,9 @@
         </select>
       </label>
 
-
       <label for="follow">
         Suivre
         <select id="follow">
-          <option value="null" selected></option>
         </select>
       </label>
 
@@ -41,9 +62,6 @@
         Zoom
         <input id="zoom" type="range" min="1" max="10" step=".1" value="7">
       </label>
-
-      <button id="start-pause">Start</button>
-      <button id="reset">Reset</button>
       <button id="fullScreen">Plein écran</button>
     </div>
 

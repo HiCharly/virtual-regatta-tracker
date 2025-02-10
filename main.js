@@ -13,6 +13,7 @@ import Boat from "./src/Geometry/Boat";
 useGeographic();
 
 // Animations
+const teamInput = document.getElementById('team')
 const followInput = document.getElementById('follow')
 const speedInput = document.getElementById('speed');
 const zoomInput = document.getElementById('zoom');
@@ -68,50 +69,7 @@ const map = new Map({
 
 const raceStartTimestamp = 1731240120000
 let currentTimestamp = raceStartTimestamp;
-
-// List boats
-const boatOptions = [
-    {
-        name: 'Hugo(85)',
-        color: 'black',
-    },
-    {
-        name: 'CharlySkipper3000',
-        color: 'orange'
-    },
-    {
-        name: 'Les sardines des sables',
-        color: 'red',
-    },
-    {
-        name: 'cece-85-',
-        color: 'green',
-    },
-    {
-        name: 'Quent185',
-        color: 'purple',
-    },
-    {
-        name: 'Cycle 3 école Saint-Pierre',
-        color: 'pink',
-    },
-    {
-        name: 'La Buse 85',
-        color: 'white',
-    },
-]
-const boats = []
-for (const boatOption of boatOptions) {
-    const boat = new Boat(boatOption.name, boatOption.color);
-    boat.fetchTrace().then(() => {
-        boats.push(boat);
-
-        const opt = document.createElement('option');
-        opt.value = boat.name;
-        opt.innerHTML = boat.name;
-        followInput.appendChild(opt);
-    })
-}
+let boats = []
 
 function startAnimation() {
     rendering = true;
@@ -186,6 +144,32 @@ function moveBoats(event) {
     map.render();
 }
 
+teamInput.addEventListener('change', function () {
+    resetAnimation();
+
+    followInput.innerHTML = "<option class=\"default\" value=\"null\" selected></option>";
+    boats = [];
+
+    fetch('data/teams/' + teamInput.value + '.json')
+        .then(res => res.json())
+        .then(res => res.sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        }))
+        .then(boatOptions => {
+            for (const boatOption of boatOptions) {
+                const boat = new Boat(boatOption.name, boatOption.color, boatOption.trace);
+                boats.push(boat);
+
+                const opt = document.createElement('option');
+                opt.value = boat.name;
+                opt.innerHTML = boat.name;
+                followInput.appendChild(opt);
+            }
+            return boats
+        })
+        .then(() => startAnimation())
+});
+
 startButton.addEventListener('click', function () {
     if (rendering) {
         pauseAnimation();
@@ -210,4 +194,3 @@ fullScreen.addEventListener('click', function () {
     }
 });
 
-startAnimation()

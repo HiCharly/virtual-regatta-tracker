@@ -4,9 +4,10 @@ import {LineString, MultiLineString, Point} from "ol/geom";
 import BoatDrag from "./BoatDrag";
 
 export default class Boat {
-    constructor(name, color) {
+    constructor(name, color, trace) {
         this.name = name;
         this.color = color;
+        this.trace = trace;
         this.start = false;
 
         this.geometry = new Point([])
@@ -29,15 +30,9 @@ export default class Boat {
         this.drag = new BoatDrag(this.color)
     }
 
-    fetchTrace() {
-        return fetch('data/boats/' + this.name + '.json')
-            .then(res => res.json())
-            .then(json => { this.trace = json; })
-    }
-
     getPosition(timestamp) {
         // fetch previous coordinates
-        const previousStep = this.trace.findLast(point => point.ts < timestamp);
+        const previousStep = this.trace.findLast(point => point.ts <= timestamp);
         if(!previousStep)
             return false;
 
