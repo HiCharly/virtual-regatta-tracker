@@ -106,8 +106,7 @@ function moveBoats(event) {
     if(!isPaused) {
         const speed = Number(speedInput.value);
         timelineInput.value = Number(timelineInput.value) + speed * 1000; // 1000 multiplication to convert ms to s
-
-        const date = new Date(timelineInput.value);
+        const date = new Date(Number(timelineInput.value));
         dateText.innerText = date.toLocaleString(globalThis.navigator.language)
     }
 
