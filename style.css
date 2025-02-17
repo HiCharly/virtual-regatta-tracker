@@ -50,9 +50,13 @@ html, body, .main {
     width: 200px;
 }
 
-.aside select {
+.aside .control {
     width: 100%;
-    margin: 5px 0;
+    margin: 10px 0;
+}
+
+.aside .control select {
+    width: 100%;
 }
 
 .aside .logo {

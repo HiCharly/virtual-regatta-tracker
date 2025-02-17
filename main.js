@@ -18,6 +18,7 @@ const teamInput = document.getElementById('team')
 const followInput = document.getElementById('follow')
 const speedInput = document.getElementById('speed');
 const zoomInput = document.getElementById('zoom');
+const displayOnlyTrackedInput = document.getElementById('displayOnlyTracked');
 const startButton = document.getElementById('start-pause');
 const resetButton = document.getElementById('reset');
 const dateText = document.getElementById('date');
@@ -113,6 +114,10 @@ function moveBoats(event) {
     // loop over boats
     const vectorContext = getVectorContext(event);
     boats.forEach(boat => {
+        if(displayOnlyTrackedInput.checked && boat.name !== followInput.value) {
+            return;
+        }
+
         // fetch boat position at new timestamp
         const newCoordinates = boat.getPosition(timelineInput.value);
         if(newCoordinates) {
