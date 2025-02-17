@@ -7,9 +7,11 @@
     "serve": "vite preview"
   },
   "devDependencies": {
+    "sass-embedded": "^1.85.0",
     "vite": "^6.1.0"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.11.3",
     "ol": "latest"
   }
 }

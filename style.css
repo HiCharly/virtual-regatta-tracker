@@ -1,30 +1,32 @@
 @import "node_modules/ol/ol.css";
+@import "node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+:root {
+    --main-bg-color: #f1f0f0;
+    --aside-bg-color: #c3c3c3;
+    --main-text-color: black;
+    --header-height: 30px;
+    --footer-height: 30px;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 html, body {
     margin: 0;
     height: 100%;
 }
 
-#map {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
+html, body, .main {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    font-family: "Nunito",sans-serif;
 }
 
 .timeline {
-    z-index: 9999;
-    position: fixed;
-    bottom: 35px;
-    left: 0;
-    width: 100%;
+    width: 50%;
     height: 35px;
-    background-color: white;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
 }
 
 .timeline input {
@@ -32,14 +34,6 @@ html, body {
 }
 
 .controls {
-    z-index: 9999;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    min-height: 35px;
-    background-color: white;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -47,23 +41,63 @@ html, body {
     justify-content: space-around;
 }
 
-.header {
-    z-index: 9999;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+.wrapper {
+    display: flex;
+    flex-direction: row;
+}
 
-    color: white;
-    font-size: 20px;
+.aside {
+    width: 200px;
+}
+
+.aside select {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.aside .logo {
+    height: var(--header-height);
+    background-color: var(--aside-bg-color);
+    text-align: center;
+}
+
+.aside .selector, .aside .logo {
+    padding: 5px;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    height: var(--header-height);
+    line-height: var(--header-height);
 
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+
+    padding: 0 5px;
+}
+
+.header .date {
+    width: 150px;
 }
 
 .header a {
     color: inherit;
     text-decoration: none;
+}
+
+.header-right {
+    float: right;
+}
+
+.map {
+    height: calc(100vh - var(--header-height) - var(--footer-height));;
+}
+
+.footer {
+    line-height: var(--footer-height);
 }

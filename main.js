@@ -79,7 +79,7 @@ let boats = []
 function startAnimation() {
     rendering = true;
     isPaused = false;
-    startButton.textContent = 'Pause';
+    startButton.innerHTML = '<i class="bi-pause-fill"></i>';
     tileLayer.on('postrender', moveBoats);
     map.render();
 }
@@ -87,7 +87,7 @@ function startAnimation() {
 function pauseAnimation() {
     rendering = false;
     isPaused = true;
-    startButton.textContent = 'Start';
+    startButton.innerHTML = '<i class="bi-play-fill"></i>';
 }
 
 function resetAnimation() {
@@ -187,7 +187,7 @@ resetButton.addEventListener('click', function () {
 });
 
 fullScreen.addEventListener('click', function () {
-    const elem = document.documentElement
+    const elem = document.getElementById("main")
 
     if (elem.requestFullscreen) {
         elem.requestFullscreen();

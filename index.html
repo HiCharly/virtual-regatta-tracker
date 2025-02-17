@@ -1,86 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Virtual Regatta Tracker</title>
-  </head>
-  <body>
-  <div class="header">
-    <div id="date"></div>
-    <a href="https://github.com/HiCharly/virtual-regatta-tracker" target="_blank">
-      Github
-    </a>
-  </div>
+</head>
+<body>
 
-    <div id="map"></div>
+<div class="wrapper">
+    <div class="aside">
+        <div class="logo">
+            VR Tracker
+        </div>
 
-    <div class="timeline">
-      <input id="timeline" type="range" step="1" disabled="disabled" />
+        <div class="selector">
+            <label for="team">
+                Équipe
+                <select id="team">
+                    <option value=""></option>
+                    <option value="HiCharly">HiCharly</option>
+                    <option value="Top 1-50">Top 1-50</option>
+                    <option value="Top 51-100">Top 51-100</option>
+                    <option value="PV1 Projection Virtuelle">PV1 Projection Virtuelle</option>
+                    <option value="PV2 Projection Virtuelle">PV2 Projection Virtuelle</option>
+                    <option value="PV3 Projection Virtuelle">PV3 Projection Virtuelle</option>
+                    <option value="PV4 Projection Virtuelle">PV4 Projection Virtuelle</option>
+                    <option value="PV5 Projection Virtuelle">PV5 Projection Virtuelle</option>
+                    <option value="PV6 Projection Virtuelle">PV6 Projection Virtuelle</option>
+                    <option value="PV7 Projection Virtuelle">PV7 Projection Virtuelle</option>
+                    <option value="PV8 Projection Virtuelle">PV8 Projection Virtuelle</option>
+                    <option value="PV9 Projection Virtuelle">PV9 Projection Virtuelle</option>
+                    <option value="PV10 Projection Virtuelle">PV10 Projection Virtuelle</option>
+                    <option value="PV11 Projection Virtuelle">PV11 Projection Virtuelle</option>
+                    <option value="PV12 Projection Virtuelle">PV12 Projection Virtuelle</option>
+                    <option value="Projection Virtuelle VG A">Projection Virtuelle VG A</option>
+                    <option value="PV GIRL MACSF">PV GIRL MACSF</option>
+                    <option value="PVe D ICE">PVe D ICE</option>
+                    <option value="Flyzen team Challenger">Flyzen team Challenger</option>
+                    <option value="Flyzen team ELITE FLYe">Flyzen team ELITE FLYe</option>
+                    <option value="Les Marins de Twitch">Les Marins de Twitch</option>
+                    <option value="PYR">PYR</option>
+                    <option value="TFS">TFS</option>
+                    <option value="TGV">TGV</option>
+                </select>
+            </label>
+
+            <label for="follow">
+                Suivre
+                <select id="follow">
+                </select>
+            </label>
+        </div>
     </div>
+    <div class="main" id="main">
+        <div class="header">
+            <div id="date"></div>
 
-    <div class="controls">
-      <label for="team">
-        Équipe
-        <select id="team">
-          <option value=""></option>
-          <option value="HiCharly">HiCharly</option>
-          <option value="Top 1-50">Top 1-50</option>
-          <option value="Top 51-100">Top 51-100</option>
-          <option value="PV1 Projection Virtuelle">PV1 Projection Virtuelle</option>
-          <option value="PV2 Projection Virtuelle">PV2 Projection Virtuelle</option>
-          <option value="PV3 Projection Virtuelle">PV3 Projection Virtuelle</option>
-          <option value="PV4 Projection Virtuelle">PV4 Projection Virtuelle</option>
-          <option value="PV5 Projection Virtuelle">PV5 Projection Virtuelle</option>
-          <option value="PV6 Projection Virtuelle">PV6 Projection Virtuelle</option>
-          <option value="PV7 Projection Virtuelle">PV7 Projection Virtuelle</option>
-          <option value="PV8 Projection Virtuelle">PV8 Projection Virtuelle</option>
-          <option value="PV9 Projection Virtuelle">PV9 Projection Virtuelle</option>
-          <option value="PV10 Projection Virtuelle">PV10 Projection Virtuelle</option>
-          <option value="PV11 Projection Virtuelle">PV11 Projection Virtuelle</option>
-          <option value="PV12 Projection Virtuelle">PV12 Projection Virtuelle</option>
-          <option value="Projection Virtuelle VG A">Projection Virtuelle VG A</option>
-          <option value="PV GIRL MACSF">PV GIRL MACSF</option>
-          <option value="PVe D ICE">PVe D ICE</option>
-          <option value="Flyzen team Challenger">Flyzen team Challenger</option>
-          <option value="Flyzen team ELITE FLYe">Flyzen team ELITE FLYe</option>
-          <option value="Les Marins de Twitch">Les Marins de Twitch</option>
-          <option value="PYR">PYR</option>
-          <option value="TFS">TFS</option>
-          <option value="TGV">TGV</option>
-        </select>
-      </label>
+            <div class="timeline">
+                <input id="timeline" type="range" step="1" disabled/>
+            </div>
 
-      <button id="start-pause">Start</button>
-      <button id="reset">Reset</button>
+            <a href="https://github.com/HiCharly/virtual-regatta-tracker" target="_blank">
+                <i class="bi-github"></i> Github
+            </a>
+        </div>
 
-      <label for="speed">
-        Vitesse
-        <select id="speed">
-          <option value="25">x0.25</option>
-          <option value="50">x0.5</option>
-          <option value="100" selected>x1</option>
-          <option value="200">x2</option>
-          <option value="500">x5</option>
-          <option value="1000">x100</option>
-          <option value="10000">x1000</option>
-        </select>
-      </label>
+        <div class="map" id="map"></div>
 
-      <label for="follow">
-        Suivre
-        <select id="follow">
-        </select>
-      </label>
+        <div class="footer">
+            <div class="controls">
+                <button id="start-pause" title="Play / pause">
+                    <i class="bi-play-fill"></i>
+                </button>
+                <button id="reset" title="Revenir au début">
+                    <i class="bi-skip-backward-fill"></i>
+                </button>
 
-      <label for="zoom">
-        Zoom
-        <input id="zoom" type="range" min="1" max="10" step=".1" value="7">
-      </label>
-      <button id="fullScreen">Plein écran</button>
+                <label for="speed">
+                    Vitesse
+                    <select id="speed">
+                        <option value="25">x0.25</option>
+                        <option value="50">x0.5</option>
+                        <option value="100" selected>x1</option>
+                        <option value="200">x2</option>
+                        <option value="500">x5</option>
+                        <option value="1000">x10</option>
+                        <option value="10000">x100</option>
+                    </select>
+                </label>
+
+                <label for="zoom">
+                    Zoom
+                    <input id="zoom" type="range" min="1" max="10" step=".1" value="7">
+                </label>
+                <button id="fullScreen" title="Plein écran">
+                    <i class="bi-arrows-fullscreen"></i>
+                </button>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script type="module" src="./main.js"></script>
-  </body>
+<script type="module" src="./main.js"></script>
+</body>
 </html>
