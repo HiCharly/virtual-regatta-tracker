@@ -114,10 +114,6 @@ function moveBoats(event) {
     // loop over boats
     const vectorContext = getVectorContext(event);
     boats.forEach(boat => {
-        if(displayOnlyTrackedInput.checked && boat.name !== followInput.value) {
-            return;
-        }
-
         // fetch boat position at new timestamp
         const newCoordinates = boat.getPosition(timelineInput.value);
         if(newCoordinates) {
@@ -136,18 +132,20 @@ function moveBoats(event) {
         }
 
         if(boat.start) {
-            // draw boat marker
-            vectorContext.setStyle(boat.style);
-            vectorContext.drawGeometry(boat.geometry);
+            if(!displayOnlyTrackedInput.checked || boat.name === followInput.value) {
+                // draw boat marker
+                vectorContext.setStyle(boat.style);
+                vectorContext.drawGeometry(boat.geometry);
 
-            // draw boat line
-            vectorContext.setStyle(boat.drag.style);
-            vectorContext.drawGeometry(boat.drag.getGeometry());
+                // draw boat line
+                vectorContext.setStyle(boat.drag.style);
+                vectorContext.drawGeometry(boat.drag.getGeometry());
+            }
         }
-
-        // update zoom
-        map.getView().setZoom(zoomInput.value);
     })
+
+    // update zoom
+    map.getView().setZoom(zoomInput.value);
 
     // tell OpenLayers to continue the postrender animation
     map.render();
