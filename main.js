@@ -201,3 +201,18 @@ fullScreen.addEventListener('click', function () {
     }
 });
 
+
+fetch('data/teamList.json')
+    .then(res => res.json())
+    .then(res => res.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    }))
+    .then(teams => {
+        for (const team of teams) {
+            const opt = document.createElement('option');
+            opt.value = team.id;
+            opt.innerHTML = team.name;
+            teamInput.appendChild(opt);
+        }
+        return teams
+    })
