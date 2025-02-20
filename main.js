@@ -167,9 +167,11 @@ teamInput.addEventListener('change', function () {
                 const boat = new Boat(boatOption.name, boatOption.color, boatOption.trace);
                 boats.push(boat);
 
+                const suffix = boatOption.finished ? '🏁': '⛵';
+
                 const opt = document.createElement('option');
                 opt.value = boat.name;
-                opt.innerHTML = boat.name;
+                opt.innerHTML = boat.name + ' ' + suffix;
                 followInput.appendChild(opt);
             }
             return boats
