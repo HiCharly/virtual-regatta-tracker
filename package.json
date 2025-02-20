@@ -11,6 +11,7 @@
     "vite": "^6.1.0"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
     "bootstrap-icons": "^1.11.3",
     "ol": "latest"
   }
