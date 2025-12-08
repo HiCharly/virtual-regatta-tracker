@@ -11,7 +11,7 @@
     "vite": "^7.2.6"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.6.0",
+    "@vercel/analytics": "^1.6.1",
     "bootstrap-icons": "^1.13.1",
     "ol": "latest"
   }
